@@ -100,11 +100,33 @@ if "!OPERATION!"=="3" (
 :: Push code ke repository code
 echo.
 echo Pushing code to repository...
-git init
+
+:: Cek apakah sudah ada git repository
+if exist .git (
+    git remote remove code-repo 2>nul
+) else (
+    git init
+)
+
+:: Tambahkan remote repository
 git remote add code-repo https://github.com/JohanesSetiawan/testUploads.git
+
+:: Cek current branch
+for /f "tokens=* USEBACKQ" %%F in (`git branch --show-current`) do set CURRENT_BRANCH=%%F
+
+:: Jika tidak ada branch, buat dan checkout ke main
+if "!CURRENT_BRANCH!"=="" (
+    git checkout -b main
+) else if not "!CURRENT_BRANCH!"=="main" (
+    git checkout main 2>nul || git checkout -b main
+)
+
+:: Stage dan commit changes
 git add .
 git commit -m "!CODE_CHANGELOG!"
-git push -f code-repo master:main
+
+:: Push ke branch main
+git push -f code-repo main:main
 
 if "!OPERATION!"=="1" (
     goto FINISH
@@ -142,7 +164,7 @@ git add version.json
 git commit -m "chore: update to version %VERSION% (build %BUILD%)"
 
 :: Force push to main branch
-git push -f version-repo master:main
+git push -f version-repo main:main
 
 :: Return to parent directory
 cd ..
