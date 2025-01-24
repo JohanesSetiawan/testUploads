@@ -1,9 +1,0 @@
-{
-  "version": "1.0.0",
-  "build_number": 0,
-  "url": "https://github.com/JohanesSetiawan/ElangDashboardUpdatesApplication/releases/download/v1.0.0/app-release.apk",
-  "force_update": false,
-  "changelog": [
-    "init"
-  ]
-}
