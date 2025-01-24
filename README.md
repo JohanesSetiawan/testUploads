@@ -1,5 +1,5 @@
-# Project Name:elangv2_jdk19
-Description: Flutter project for Elang Java Application.
+# Project Name:ElangAppsDashboard
+Description: Flutter project for Elang Java Apps Dashboard Application.
 
 ## Getting Started
 1. Clone the repository
