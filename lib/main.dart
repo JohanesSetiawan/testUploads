@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Consumer<AuthProvider>(
         builder: (context, authProvider, _) {
-          // Check if user is logged in
           if (authProvider.isLoggedIn()) {
             return const Homepage();
           }
